@@ -86,7 +86,9 @@ ALTER SEQUENCE public.comet_comet_id_seq OWNED BY public.comet.comet_id;
 CREATE TABLE public.galaxy (
     galaxy_id integer NOT NULL,
     name character varying(40) NOT NULL,
-    diameter_in_ly numeric(7,1) NOT NULL
+    diameter_in_ly numeric(8,1) NOT NULL,
+    date_discovered date,
+    estimated_age integer
 );
 
 
@@ -122,7 +124,8 @@ CREATE TABLE public.moon (
     moon_id integer NOT NULL,
     planet_id integer NOT NULL,
     name character varying(40) NOT NULL,
-    has_life boolean DEFAULT false
+    has_life boolean DEFAULT false,
+    date_discovered date
 );
 
 
@@ -263,65 +266,112 @@ ALTER TABLE ONLY public.star ALTER COLUMN star_id SET DEFAULT nextval('public.st
 -- Data for Name: comet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.comet VALUES (4, 6, 'TJI48MMH3YC', 20.7);
+INSERT INTO public.comet VALUES (5, 5, 'ECR18TNG2BF', 25.4);
+INSERT INTO public.comet VALUES (6, 3, 'QEK99ECN2VT', 49.3);
 
 
 --
 -- Data for Name: galaxy; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.galaxy VALUES (1, 'ORU07DPV8KO', 481006.7, NULL, NULL);
+INSERT INTO public.galaxy VALUES (2, 'CQE45STG4EZ', 1111188.1, NULL, NULL);
+INSERT INTO public.galaxy VALUES (3, 'LMJ50HXB6LI', 731548.7, NULL, NULL);
+INSERT INTO public.galaxy VALUES (4, 'PNN11KPX2NS', 1256151.6, NULL, NULL);
+INSERT INTO public.galaxy VALUES (5, 'CLF49IBJ5MD', 891689.7, NULL, NULL);
+INSERT INTO public.galaxy VALUES (6, 'WBQ53AKK1TM', 1680048.2, NULL, NULL);
 
 
 --
 -- Data for Name: moon; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.moon VALUES (1, 7, 'TJI48MMH3YC', true, NULL);
+INSERT INTO public.moon VALUES (2, 9, 'ECR18TNG2BF', false, NULL);
+INSERT INTO public.moon VALUES (3, 4, 'QEK99ECN2VT', true, NULL);
+INSERT INTO public.moon VALUES (4, 1, 'AYI21XQF6KB', true, NULL);
+INSERT INTO public.moon VALUES (5, 12, 'PEL29XYV5FN', true, NULL);
+INSERT INTO public.moon VALUES (6, 12, 'OEE18FIX4IP', true, NULL);
+INSERT INTO public.moon VALUES (7, 7, 'LRO83RXW4KG', false, NULL);
+INSERT INTO public.moon VALUES (8, 11, 'TPR72DKM1UR', true, NULL);
+INSERT INTO public.moon VALUES (9, 3, 'IEV72UGC9HH', false, NULL);
+INSERT INTO public.moon VALUES (10, 1, 'VJV19FXT3UB', true, NULL);
+INSERT INTO public.moon VALUES (11, 10, 'LQR75DJV5FI', true, NULL);
+INSERT INTO public.moon VALUES (12, 12, 'TPO87QQK0WA', true, NULL);
+INSERT INTO public.moon VALUES (13, 4, 'GGC27PXP1ZX', true, NULL);
+INSERT INTO public.moon VALUES (14, 2, 'RYS54WGY5WQ', false, NULL);
+INSERT INTO public.moon VALUES (15, 11, 'ZSN58WIV6UP', true, NULL);
+INSERT INTO public.moon VALUES (16, 7, 'CQY44RJG1UO', false, NULL);
+INSERT INTO public.moon VALUES (17, 8, 'MUB52CYJ8TN', true, NULL);
+INSERT INTO public.moon VALUES (18, 9, 'YVV35SYO3GV', true, NULL);
+INSERT INTO public.moon VALUES (19, 10, 'DGF27IDL5VU', true, NULL);
+INSERT INTO public.moon VALUES (20, 8, 'LQY14KHN0QR', false, NULL);
 
 
 --
 -- Data for Name: planet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.planet VALUES (1, 2, 'TJI48MMH3YC', true, 3);
+INSERT INTO public.planet VALUES (2, 6, 'ECR18TNG2BF', false, 2);
+INSERT INTO public.planet VALUES (3, 3, 'QEK99ECN2VT', true, 2);
+INSERT INTO public.planet VALUES (4, 3, 'AYI21XQF6KB', true, 3);
+INSERT INTO public.planet VALUES (5, 5, 'PEL29XYV5FN', true, 1);
+INSERT INTO public.planet VALUES (6, 5, 'OEE18FIX4IP', true, 3);
+INSERT INTO public.planet VALUES (7, 2, 'LRO83RXW4KG', false, 2);
+INSERT INTO public.planet VALUES (8, 2, 'TPR72DKM1UR', true, 4);
+INSERT INTO public.planet VALUES (9, 3, 'IEV72UGC9HH', false, 4);
+INSERT INTO public.planet VALUES (10, 5, 'VJV19FXT3UB', true, 4);
+INSERT INTO public.planet VALUES (11, 5, 'LQR75DJV5FI', true, 3);
+INSERT INTO public.planet VALUES (12, 5, 'TPO87QQK0WA', true, 5);
 
 
 --
 -- Data for Name: star; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.star VALUES (1, 2, 'TJI48MMH3YC', 'ante bibendum ullamcorper. Duis cursus, diam at pretium', 5);
+INSERT INTO public.star VALUES (2, 6, 'ECR18TNG2BF', 'molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare', 8);
+INSERT INTO public.star VALUES (3, 3, 'QEK99ECN2VT', 'est ac mattis semper, dui lectus rutrum urna, nec luctus felis', 2);
+INSERT INTO public.star VALUES (4, 3, 'AYI21XQF6KB', 'vel arcu. Curabitur ut odio vel est tempor bibendum. Donec felis', 6);
+INSERT INTO public.star VALUES (5, 5, 'PEL29XYV5FN', 'id sapien. Cras', 3);
+INSERT INTO public.star VALUES (6, 5, 'OEE18FIX4IP', 'iaculis aliquet diam. Sed diam lorem,', 5);
 
 
 --
 -- Name: comet_comet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.comet_comet_id_seq', 1, false);
+SELECT pg_catalog.setval('public.comet_comet_id_seq', 6, true);
 
 
 --
 -- Name: galaxy_galaxy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 1, false);
+SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 7, true);
 
 
 --
 -- Name: moon_moon_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.moon_moon_id_seq', 1, false);
+SELECT pg_catalog.setval('public.moon_moon_id_seq', 20, true);
 
 
 --
 -- Name: planet_planet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.planet_planet_id_seq', 1, false);
+SELECT pg_catalog.setval('public.planet_planet_id_seq', 12, true);
 
 
 --
 -- Name: star_star_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.star_star_id_seq', 1, false);
+SELECT pg_catalog.setval('public.star_star_id_seq', 6, true);
 
 
 --
